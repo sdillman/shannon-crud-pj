@@ -1,0 +1,29 @@
+{
+  "name": "shannon-crud-pj",
+  "version": "1.0.0",
+  "description": "A simple CRUD app for opera roles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdillman/shannon-crud-pj.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sdillman/shannon-crud-pj/issues"
+  },
+  "homepage": "https://github.com/sdillman/shannon-crud-pj#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "mongoose": "^5.9.28"
+  },
+  "engines": {
+    "node": "14.5.x"
+  }
+}
