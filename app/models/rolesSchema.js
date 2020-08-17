@@ -1,15 +1,15 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const rolesSchema = new mongoose.Schema({
   deleted: {
       type: Boolean,
-      required: [false],
-  }
+      required: [false]
+  },
   role: {
     type: Object,
     required: [true, 'Username is required'],
     languages: {
-        type: Array
+        type: Array,
         required: [true, 'Language performed is required']
     },
     name: {
