@@ -5,38 +5,29 @@ const rolesSchema = require('./app/models/rolesSchema.js');
 // const Role = mongoose.model('role', rolesSchema);
 // const Opera = mongoose.model('opera', rolesSchema);
 // const Composer = mongoose.model('composer', rolesSchema);
-const route = require('./app/routes/index.js');
+const route = require('./app/routes/routes.js');
 const cors = require("cors");
 
 
-let app = express();
+const app = express();
+
 app.use('/', route);
 
 
-
-
-// view engine setup
+// view engine setup for Handlebars
 app.set('view engine', 'hbs');
 
+// config for handlebars
 app.engine( 'hbs', hbs( {
   defaultView: 'default',
-  layoutsDir: __dirname + '/views/pages/',
+  layoutsDir: __dirname + '/views/layouts/',
   partialsDir: __dirname + '/views/partials/',
   defaultLayout: 'main',
   extname: '.hbs'
 }));
 
 
-// Mongo Connection  (import from another file at some point) ******************************
-// const MongoClient = require('mongodb').MongoClient;
-// const connectionString = "mongodb+srv://dbUsrRoles:hAovgC1pdMzTCnlL@cluster0.abhfa.mongodb.net/performances?retryWrites=true&w=majority";
-// const client = new MongoClient(connectionString, { useNewUrlParser: true });
-// client.connect(err => {
-//   const collection = client.db("performances").collection("roles");
-//   // perform actions on the collection object
-//   console.log(`COLLECTION ${collection}`);
-//   client.close();
-// });
+
 
 
 // SERVER
@@ -45,6 +36,9 @@ app.engine( 'hbs', hbs( {
 // };
 
 // app.use(cors(corsOptions));
+// gotta use cors - cross-origin request sharing because we're making requests to servers not the web server domain
+
+// app.use - things I have to do to every request. cors()
 app.use(cors());
 
 // parse requests of content-type - application/json
@@ -52,6 +46,9 @@ app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+
+//from https://medium.com/@waelyasmina/a-guide-into-using-handlebars-with-your-express-js-application-22b944443b65
+app.use(express.static('public'));
 
 // simple route just to see if it's running on 8080, but no longer needed
 // app.get("/", (req, res) => {
@@ -66,6 +63,15 @@ app.listen(PORT, () => {
 }
 );
 
-
+// app.get
+// get is an async function
+// get("/route", req, res, next)
+// get gets a route "/" "route", and req, res, next go the the callback function
+// at minimum, req and res, functions provided by Express. next is also provided by Express, and basically means "continue"
+// req is the get request FROM the browser, an object with all kinds of things hanging off of it
+// res is the response TO the browser. res.json is a json response, for example
+// next, if present, is an instruction set(?), telling get to wait for whatever it needs to wait for, and then 
+// .net allows app.get to complete its processing and hand off to wherever it goes next
+// 
 
 

@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
+const db = require('../config/db.config');
 
-const rolesSchema = new mongoose.Schema({
+let {Schema, model} = mongoose;
+
+
+const rolesSchema = new Schema({
   deleted: {
       type: Boolean,
       required: [false]
@@ -27,4 +31,4 @@ const rolesSchema = new mongoose.Schema({
   }
 });
 
-module.exports = rolesSchema;
+module.exports = model('Roles', rolesSchema);
